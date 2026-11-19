@@ -1,0 +1,38 @@
+image:
+  repository: ghcr.io/example/opslink
+  tag: latest
+  pullPolicy: IfNotPresent
+
+secretName: opslink-secret
+
+googleCredentials:
+  enabled: false
+  secretKey: service-account.json
+  mountPath: /var/run/opslink/service-account.json
+
+jobs:
+  - name: update-oncall
+    command: updateOncall
+    schedule: "*/10 * * * *"
+    enabled: true
+  - name: daily-alerts
+    command: dailyAlerts
+    schedule: "0 9 * * 1-5"
+    enabled: true
+  - name: next-oncall
+    command: nextOncall
+    schedule: "0 9 * * 1"
+    enabled: true
+  - name: weekly-cloud-digest
+    command: weeklyGcp
+    schedule: "0 9 * * 1"
+    enabled: false
+    needsGoogleCredentials: true
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi

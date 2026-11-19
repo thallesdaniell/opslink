@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg class="dg" xmlns="http://www.w3.org/2000/svg" viewBox="-16 -16 1132 402" width="1132" height="402" role="img" aria-label="A CronJob inicia o Opslink, carrega a configuração, lê a escala no Incident.io e compara os membros. Se não houver mudança, termina sem alterações. Em dry-run, mostra uma prévia. Quando há mudança, atualiza primeiro o grupo Google, depois o grupo Slack e publica a notificação. Falhas de configuração ou da API encerram a execução sem alteração externa.">
+<style>
+  svg { --raised:#ffffff; --fg:#1c222a; --muted:#5a6572; --line:#c7ced6; --lane:#eaedf1; --accent:#b0520b; }
+  @media (prefers-color-scheme: dark) {
+    svg { --raised:#181d24; --fg:#e2e6eb; --muted:#95a0ac; --line:#39424c; --lane:#1f262e; --accent:#f0a23a; }
+  }
+  .bg { fill: var(--raised); }
+  .dg { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--fg); }
+  text { fill: var(--fg); }
+  .t-title { font-family: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 600; }
+  .t-sub, .t-label { fill: var(--muted); font-size: 11px; }
+  .box { fill: var(--raised); stroke: var(--fg); stroke-width: 1.2; }
+  .box-acc { fill: var(--raised); stroke: var(--accent); stroke-width: 2; }
+  .edge { stroke: var(--fg); stroke-width: 1.4; fill: none; }
+  .edge-acc { stroke: var(--accent); stroke-width: 1.8; fill: none; }
+  .edge-dash { stroke: var(--fg); stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
+  .head { fill: var(--fg); }
+  .head-acc { fill: var(--accent); }
+</style>
+<rect class="bg" x="-16" y="-16" width="1132" height="402" rx="10"/>
+<defs>
+  <marker id="flow-head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="flow-head-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="head-acc" d="M0,0 L10,5 L0,10 z"/></marker>
+</defs>
+
+<!-- falha segura -->
+<rect class="box" x="285" y="16" width="500" height="52" rx="6"/>
+<text class="t-title" x="535" y="38" text-anchor="middle">STOPPED · nenhuma alteração externa</text>
+<text class="t-sub" x="535" y="56" text-anchor="middle">configuração inválida · Incident.io indisponível · escala sem titular</text>
+
+<!-- fluxo principal -->
+<rect class="box" x="10" y="142" width="112" height="50" rx="6"/>
+<text class="t-title" x="66" y="164" text-anchor="middle">CronJob</text>
+<text class="t-sub" x="66" y="181" text-anchor="middle">Helm schedule</text>
+
+<rect class="box" x="160" y="142" width="120" height="50" rx="6"/>
+<text class="t-title" x="220" y="164" text-anchor="middle">configuração</text>
+<text class="t-sub" x="220" y="181" text-anchor="middle">Secret + env</text>
+
+<rect class="box" x="320" y="142" width="130" height="50" rx="6"/>
+<text class="t-title" x="385" y="164" text-anchor="middle">escala atual</text>
+<text class="t-sub" x="385" y="181" text-anchor="middle">Incident.io</text>
+
+<rect class="box" x="490" y="142" width="130" height="50" rx="6"/>
+<text class="t-title" x="555" y="164" text-anchor="middle">comparação</text>
+<text class="t-sub" x="555" y="181" text-anchor="middle">membros atuais</text>
+
+<rect class="box-acc" x="660" y="142" width="130" height="50" rx="6"/>
+<text class="t-title" x="725" y="164" text-anchor="middle">grupo Google</text>
+<text class="t-sub" x="725" y="181" text-anchor="middle">sincronizado</text>
+
+<rect class="box" x="830" y="142" width="120" height="50" rx="6"/>
+<text class="t-title" x="890" y="164" text-anchor="middle">grupo Slack</text>
+<text class="t-sub" x="890" y="181" text-anchor="middle">sincronizado</text>
+
+<rect class="box" x="990" y="142" width="110" height="50" rx="6"/>
+<text class="t-title" x="1045" y="164" text-anchor="middle">notificado</text>
+<text class="t-sub" x="1045" y="181" text-anchor="middle">canal Slack</text>
+
+<line class="edge" x1="122" y1="167" x2="158" y2="167" marker-end="url(#flow-head)"/>
+<line class="edge" x1="280" y1="167" x2="318" y2="167" marker-end="url(#flow-head)"/>
+<line class="edge" x1="450" y1="167" x2="488" y2="167" marker-end="url(#flow-head)"/>
+<line class="edge-acc" x1="620" y1="167" x2="658" y2="167" marker-end="url(#flow-head-acc)"/>
+<text class="t-label" x="639" y="158" text-anchor="middle">mudou</text>
+<line class="edge" x1="790" y1="167" x2="828" y2="167" marker-end="url(#flow-head)"/>
+<line class="edge" x1="950" y1="167" x2="988" y2="167" marker-end="url(#flow-head)"/>
+
+<!-- falhas antes de qualquer escrita -->
+<path class="edge" d="M220 142 C250 98, 330 82, 390 68" marker-end="url(#flow-head)"/>
+<text class="t-label" x="280" y="103">inválida</text>
+<path class="edge" d="M385 142 C405 104, 455 86, 485 68" marker-end="url(#flow-head)"/>
+<text class="t-label" x="423" y="110">erro</text>
+
+<!-- saídas sem escrita -->
+<rect class="box" x="430" y="280" width="150" height="50" rx="6"/>
+<text class="t-title" x="505" y="302" text-anchor="middle">NOOP</text>
+<text class="t-sub" x="505" y="319" text-anchor="middle">grupo já está correto</text>
+<path class="edge-dash" d="M535 192 C535 225, 515 247, 505 278" marker-end="url(#flow-head)"/>
+<text class="t-label" x="545" y="239">sem mudança</text>
+
+<rect class="box" x="635" y="280" width="180" height="50" rx="6"/>
+<text class="t-title" x="725" y="302" text-anchor="middle">prévia</text>
+<text class="t-sub" x="725" y="319" text-anchor="middle">dry-run · nenhuma escrita</text>
+<path class="edge-dash" d="M705 192 C695 225, 710 247, 725 278" marker-end="url(#flow-head)"/>
+<text class="t-label" x="704" y="239">--dry-run</text>
+
+<text class="t-sub" x="550" y="370" text-anchor="middle">dailyAlerts, nextOncall e weeklyGcp usam o mesmo padrão: ler → compor → prévia ou publicar</text>
+</svg>
