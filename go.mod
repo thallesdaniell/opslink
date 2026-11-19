@@ -7,7 +7,7 @@ require (
 	github.com/caarlos0/env v3.5.0+incompatible
 	github.com/joho/godotenv v1.5.1
 	github.com/sirupsen/logrus v1.9.3
-	github.com/slack-go/slack v0.12.2
+	github.com/slack-go/slack v0.23.1
 	github.com/spf13/cobra v1.7.0
 	golang.org/x/oauth2 v0.36.0
 	google.golang.org/api v0.264.0
